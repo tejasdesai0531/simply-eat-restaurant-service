@@ -7,7 +7,7 @@ beforeAll(async () => {
     const mongoUri = mongo.getUri()
 
     console.log("+++++++")
-    console.log(mongoUri)
+    console.log(mongoUri,'mongoUri')
 
     await mongoose.connect(mongoUri, {
         useNewUrlParser: true,

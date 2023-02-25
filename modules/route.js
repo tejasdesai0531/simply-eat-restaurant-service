@@ -1,10 +1,10 @@
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
 
-const countryRouter = require('./country/country.route')
-const cuisineRouter = require('./cuisine/cuisine.route')
+const outletRouter = require('./outlet/outlet.route');
 
-router.use('/country', countryRouter)
-router.use('/cuisine', cuisineRouter)
+
+router.use('/outlet', outletRouter);
+
 
 module.exports = router;

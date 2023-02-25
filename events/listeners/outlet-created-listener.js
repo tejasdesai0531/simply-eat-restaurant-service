@@ -1,8 +1,8 @@
 const Listner = require('./base-listener')
 
-class CityCreatedListner extends Listner {
+class OutletCreatedListner extends Listner {
 
-    getSubject() { return 'city:created' }
+    getSubject() { return 'outlet:created' }
 
     onMessage(data, msg) {
         console.log("Inside onMessage : ", data)
@@ -10,4 +10,4 @@ class CityCreatedListner extends Listner {
     }
 }
 
-module.exports = CityCreatedListner
+module.exports = OutletCreatedListner

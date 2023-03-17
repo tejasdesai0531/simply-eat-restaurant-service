@@ -1,23 +1,26 @@
-const BadRequestError = require('../../errors/bad-request-error')
+const {BadRequestError} = require('@simply-eat/common')
 const OutletModel = require('../../models/outlet.model')
-const { validationResult } = require('express-validator')
-const RequestValidationError = require('../../errors/request-validation-error')
+const countryModel = require('../../models/country.model');
 const OutletCreatedPublisher = require('../../events/publishers/outlet-created-publisher')
 const natsWrapper = require('../../config/nats-wrapper')
-
 
 async function addOutlet(req, res, next) {
 
     try {
         const name = req.body.name
         const address = req.body.address
-        const countryCode = req.body.countryCode
-        const cityCode = req.body.cityCode 
+        const countryID = req.body.countryID
+        const cityID = req.body.cityID 
         const contact = req.body.contact 
         const status = req.body.status
     
-        const outlet = await OutletModel.addOutlet({ name,address,countryCode,cityCode,contact,status })
-    
+        const countryExits = await countryModel.findOne({id:countryID});
+
+        const outlet = await OutletModel.addOutlet({ name,address,countryID,cityID,contact,status });
+
+        
+        // new OutletCreatedPublisher(natsWrapper.getClient()).publish(outlet);
+
         res.send({
             error: false,
             message: "Outlet created successfully",

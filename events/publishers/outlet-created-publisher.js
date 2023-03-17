@@ -1,4 +1,4 @@
-const Publisher = require('./base-publisher')
+const {Publisher} = require('@simply-eat/common')
 
 class OutletCreatedPublisher extends Publisher {
 

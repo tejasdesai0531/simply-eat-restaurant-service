@@ -31,14 +31,27 @@ const catalogueSchema = new mongoose.Schema(
   }
 );
 
-catalogueSchema.options.toJSON = {
-  transfrom: function (doc, ret, options) {
+catalogueSchema.set('toJSON', {
+  transform: function(doc, ret) {
     ret.id = ret._id;
     delete ret._id;
     delete ret.__v;
+
+    ret.categories.forEach(category => {
+      category.id = category._id
+      delete category._id
+
+      category.items.forEach(item => {
+        item.id = item._id
+        delete item._id
+      })
+    })
+
     return ret;
-  },
-};
+  }
+});
+
+
 
 
 

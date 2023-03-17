@@ -53,9 +53,7 @@ async function addItem(req, res, next) {
         }
 
 
-        console.log(categoryID,'categoryIDnefore');
         let category = catalogue.categories.find(c=>c.id == categoryID);
-        console.log(category,'categoryIDafter');
         if(!category){
             throw new BadRequestError('Invalid category ID'); 
         }

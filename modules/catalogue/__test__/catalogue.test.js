@@ -27,8 +27,8 @@ it("it can create category", async () => {
     outletID: outlet.id
    });
 
- let categoryID = result.body.data.resultCatalogue.categories[0]._id;  
-console.log(result.body.data.resultCatalogue.categories[0]._id,'result',categoryID);
+ let categoryID = result.body.data.resultCatalogue.categories[0].id;  
+console.log(result.body.data.resultCatalogue.categories[0].id,'result',categoryID);
 
 let itemResult= await request(app)
 .post("/api/catalogue/item")
